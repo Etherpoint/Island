@@ -8,5 +8,6 @@ public class Runner {
     public static void main(String[] args) {
         GameMap gameMap = GameMapCreator.createMap();
         ConsoleStats.allStats(gameMap);
+        System.out.println("Project");
     }
 }
