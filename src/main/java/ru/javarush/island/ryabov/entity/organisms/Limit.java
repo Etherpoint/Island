@@ -10,4 +10,6 @@ public class Limit {
     private final int maxCountInCell;
     private final int maxSpeed;
     private final double maxFood;
+    private final String icon;
+    private final String name;
 }

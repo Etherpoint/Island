@@ -13,11 +13,6 @@ public class Duck extends Herbivore {
     }
 
     @Override
-    public void eat(Cell cell) {
-
-    }
-
-    @Override
     public void move(Cell cell) {
 
     }

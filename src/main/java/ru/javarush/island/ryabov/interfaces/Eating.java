@@ -6,28 +6,43 @@ import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 import ru.javarush.island.ryabov.entity.organisms.types.Predator;
 import ru.javarush.island.ryabov.util.Random;
+
 import java.util.Map;
 
 public interface Eating {
-    default void eat(Cell cell){
-        if (this instanceof Predator){
-            Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
-            //TODO добавить вероятности
-            cell.HERBIVORES.remove(herbivore);
-            for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                if (organismIntegerEntry.getKey().equals(herbivore)){
-                    cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()-1);
+    default void eat(Cell cell) {
+        cell.getLock().lock();
+        if (this instanceof Predator) {
+            if (cell.HERBIVORES.size() == 0) {
+            } else {
+                Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
+                //TODO добавить вероятности
+                synchronized (cell) {
+                    cell.HERBIVORES.remove(herbivore);
+                    cell.ORGANISMS.remove(herbivore);
+                }
+                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
+                    if (organismIntegerEntry.getKey().getClass().getSimpleName() == herbivore.getClass().getSimpleName()) {
+                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() - 1);
+                    }
                 }
             }
-        }else{
-            Plant plant = cell.PLANTS.get(Random.random(0, cell.PLANTS.size()));
-            //TODO добавить вероятности
-            cell.PLANTS.remove(plant);
-            for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                if (organismIntegerEntry.getKey().equals(plant)){
-                    cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()-1);
+        } else {
+            if (cell.PLANTS.size() == 0) {
+            } else {
+                Plant plant = cell.PLANTS.get(Random.random(0, cell.PLANTS.size()));
+                //TODO добавить вероятности
+                synchronized (cell) {
+                    cell.PLANTS.remove(plant);
+                    cell.ORGANISMS.remove(plant);
+                }
+                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
+                    if (organismIntegerEntry.getKey().getClass().getSimpleName() == plant.getClass().getSimpleName()) {
+                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() - 1);
+                    }
                 }
             }
         }
+        cell.getLock().unlock();
     }
 }

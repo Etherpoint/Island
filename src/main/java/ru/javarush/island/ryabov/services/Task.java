@@ -19,8 +19,6 @@ public class Task {
     public void doTask() {
         if (organism instanceof Animal animal) {
             animal.eat(cell);
-//            animal.reproduce(cell);
-//            animal.move(cell);
         } else {
             organism.reproduce(cell);
         }

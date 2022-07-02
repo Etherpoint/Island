@@ -13,11 +13,6 @@ public class Wolf extends Predator {
     }
 
     @Override
-    public void eat(Cell cell) {
-
-    }
-
-    @Override
     public void move(Cell cell) {
 
     }

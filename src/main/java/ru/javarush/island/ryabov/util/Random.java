@@ -3,7 +3,7 @@ package ru.javarush.island.ryabov.util;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Random {
-    private Random(){
+    private Random() {
     }
 
     public static int random(int min, int max) {

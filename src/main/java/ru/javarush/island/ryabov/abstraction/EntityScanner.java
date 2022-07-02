@@ -23,7 +23,9 @@ public class EntityScanner {
                         typeData.maxWeight(),
                         typeData.maxCountInCell(),
                         typeData.maxSpeed(),
-                        typeData.maxFood()
+                        typeData.maxFood(),
+                        typeData.icon(),
+                        typeData.name()
                 );
 
                 organisms[index++] = generatePrototype(type, name, icon, limit);

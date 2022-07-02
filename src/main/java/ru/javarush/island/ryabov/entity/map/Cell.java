@@ -18,6 +18,7 @@ public class Cell {
     public List<Predator> PREDATORS = new ArrayList<>();
     public List<Herbivore> HERBIVORES = new ArrayList<>();
     public List<Plant> PLANTS = new ArrayList<>();
+    public List<Organism> ORGANISMS = new ArrayList<>();
 
     @Getter
     private final Lock lock = new ReentrantLock(true);
