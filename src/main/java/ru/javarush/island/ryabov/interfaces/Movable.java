@@ -1,5 +1,7 @@
 package ru.javarush.island.ryabov.interfaces;
 
+import ru.javarush.island.ryabov.entity.map.Cell;
+
 public interface Movable {
-    void move(int row, int col);
+    void move(Cell cell);
 }

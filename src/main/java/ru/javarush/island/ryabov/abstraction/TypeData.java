@@ -1,4 +1,4 @@
-package ru.javarush.island.ryabov.util;
+package ru.javarush.island.ryabov.abstraction;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

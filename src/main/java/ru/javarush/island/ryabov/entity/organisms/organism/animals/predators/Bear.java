@@ -1,27 +1,30 @@
 package ru.javarush.island.ryabov.entity.organisms.organism.animals.predators;
 
-import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+import ru.javarush.island.ryabov.abstraction.TypeData;
+import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.Limit;
-import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 import ru.javarush.island.ryabov.entity.organisms.types.Predator;
 
+@TypeData(name = "Медведь", icon = "\uD83D\uDC3B", maxWeight = 500, maxCountInCell = 5, maxSpeed = 2, maxFood = 80)
+
 public class Bear extends Predator {
-    public Bear (String name, String icon, Limit limit){
+    public Bear(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
 
+
     @Override
-    public void move(int row, int col) {
+    public void eat(Cell cell) {
 
     }
 
     @Override
-    public void reproduce(Organism organism) {
+    public void move(Cell cell) {
 
     }
 
     @Override
-    public void eat(Herbivore herbivore) {
+    public void reproduce(Cell cell) {
 
     }
 }

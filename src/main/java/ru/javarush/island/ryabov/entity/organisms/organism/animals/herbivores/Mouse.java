@@ -1,27 +1,30 @@
 package ru.javarush.island.ryabov.entity.organisms.organism.animals.herbivores;
 
-import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+import ru.javarush.island.ryabov.abstraction.TypeData;
+import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.Limit;
-import ru.javarush.island.ryabov.entity.organisms.types.Organism;
-import ru.javarush.island.ryabov.entity.organisms.organism.plant.Plant;
+import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+
+@TypeData(name = "Мышь", icon = "\uD83D\uDC01", maxWeight = 0.05, maxCountInCell = 500, maxSpeed = 1, maxFood = 0.01)
 
 public class Mouse extends Herbivore {
-    public Mouse (String name, String icon, Limit limit){
+    public Mouse(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
 
+
     @Override
-    public void eat(Plant plant) {
+    public void eat(Cell cell) {
 
     }
 
     @Override
-    public void move(int row, int col) {
+    public void move(Cell cell) {
 
     }
 
     @Override
-    public void reproduce(Organism organism) {
+    public void reproduce(Cell cell) {
 
     }
 }

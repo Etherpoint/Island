@@ -1,27 +1,30 @@
 package ru.javarush.island.ryabov.entity.organisms.organism.animals.herbivores;
 
-import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+import ru.javarush.island.ryabov.abstraction.TypeData;
+import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.Limit;
-import ru.javarush.island.ryabov.entity.organisms.types.Organism;
-import ru.javarush.island.ryabov.entity.organisms.organism.plant.Plant;
+import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+
+@TypeData(name = "Коза", icon = "\uD83D\uDC10", maxWeight = 60, maxCountInCell = 140, maxSpeed = 3, maxFood = 10)
 
 public class Goat extends Herbivore {
-    public Goat (String name, String icon, Limit limit){
+    public Goat(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
 
+
     @Override
-    public void eat(Plant plant) {
+    public void eat(Cell cell) {
 
     }
 
     @Override
-    public void move(int row, int col) {
+    public void move(Cell cell) {
 
     }
 
     @Override
-    public void reproduce(Organism organism) {
+    public void reproduce(Cell cell) {
 
     }
 }

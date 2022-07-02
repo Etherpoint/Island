@@ -1,27 +1,29 @@
 package ru.javarush.island.ryabov.entity.organisms.organism.animals.herbivores;
 
-import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+import ru.javarush.island.ryabov.abstraction.TypeData;
+import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.Limit;
-import ru.javarush.island.ryabov.entity.organisms.types.Organism;
-import ru.javarush.island.ryabov.entity.organisms.organism.plant.Plant;
+import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
+
+@TypeData(name = "Утка", icon = "\uD83E\uDD86", maxWeight = 1, maxCountInCell = 200, maxSpeed = 4, maxFood = 0.15)
 
 public class Duck extends Herbivore {
-    public Duck (String name, String icon, Limit limit){
+    public Duck(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
 
     @Override
-    public void eat(Plant plant) {
+    public void eat(Cell cell) {
 
     }
 
     @Override
-    public void move(int row, int col) {
+    public void move(Cell cell) {
 
     }
 
     @Override
-    public void reproduce(Organism organism) {
+    public void reproduce(Cell cell) {
 
     }
 }

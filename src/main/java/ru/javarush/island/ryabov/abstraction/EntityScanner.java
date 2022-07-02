@@ -1,4 +1,4 @@
-package ru.javarush.island.ryabov.util;
+package ru.javarush.island.ryabov.abstraction;
 
 import ru.javarush.island.ryabov.entity.organisms.Limit;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
@@ -8,10 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class EntityScanner {
-    public EntityScanner(){
+    private EntityScanner(){
     }
 
-    public static Organism[] createPrototypes(List<Class<?>> TYPES) {
+    public static Organism[] createPrototypes( List<Class<?>> TYPES) {
         Organism[] organisms = new Organism[TYPES.size()];
         int index = 0;
         for (Class<?> type : TYPES) {
