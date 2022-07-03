@@ -11,9 +11,4 @@ public class Caterpillar extends Herbivore {
     public Caterpillar(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
-
-    @Override
-    public void move(Cell cell) {
-
-    }
 }

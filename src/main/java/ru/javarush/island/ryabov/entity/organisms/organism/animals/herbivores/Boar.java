@@ -10,9 +10,4 @@ public class Boar extends Herbivore {
     public Boar (String name, String icon, Limit limit){
         super(name, icon, limit);
     }
-
-    @Override
-    public void move(Cell cell) {
-
-    }
 }

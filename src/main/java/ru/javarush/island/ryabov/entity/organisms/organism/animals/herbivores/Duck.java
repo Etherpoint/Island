@@ -11,9 +11,4 @@ public class Duck extends Herbivore {
     public Duck(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
-
-    @Override
-    public void move(Cell cell) {
-
-    }
 }

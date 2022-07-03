@@ -11,9 +11,4 @@ public class Goat extends Herbivore {
     public Goat(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
-
-    @Override
-    public void move(Cell cell) {
-
-    }
 }

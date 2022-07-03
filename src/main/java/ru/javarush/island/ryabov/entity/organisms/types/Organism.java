@@ -14,12 +14,14 @@ public abstract class Organism implements Reproducible, Cloneable {
     @SuppressWarnings("unused")
     private long id = idCounter.incrementAndGet();
     private final String ICON;
+    private final String NAME;
     private final Limit LIMIT;
     @Setter
     @SuppressWarnings("unused")
     private double WEIGHT;
 
-    public Organism(String icon, Limit limit) {
+    public Organism(String name, String icon, Limit limit) {
+        this.NAME = name;
         this.ICON = icon;
         this.LIMIT = limit;
         WEIGHT = Random.random(LIMIT.getMaxWeight() / 2, LIMIT.getMaxWeight());

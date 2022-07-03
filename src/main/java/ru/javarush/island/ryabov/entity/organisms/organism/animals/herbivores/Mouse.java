@@ -1,7 +1,6 @@
 package ru.javarush.island.ryabov.entity.organisms.organism.animals.herbivores;
 
 import ru.javarush.island.ryabov.abstraction.TypeData;
-import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.Limit;
 import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
 
@@ -10,10 +9,5 @@ import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
 public class Mouse extends Herbivore {
     public Mouse(String name, String icon, Limit limit) {
         super(name, icon, limit);
-    }
-
-    @Override
-    public void move(Cell cell) {
-
     }
 }
