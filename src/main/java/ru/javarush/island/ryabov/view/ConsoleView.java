@@ -1,8 +1,6 @@
 package ru.javarush.island.ryabov.view;
 
-import ru.javarush.island.ryabov.abstraction.TypeData;
 import ru.javarush.island.ryabov.config.Setting;
-import ru.javarush.island.ryabov.constants.Constants;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.map.GameMap;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
