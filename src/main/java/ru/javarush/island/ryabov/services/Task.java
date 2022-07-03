@@ -3,9 +3,7 @@ package ru.javarush.island.ryabov.services;
 import lombok.Getter;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.types.Animal;
-import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
-import ru.javarush.island.ryabov.entity.organisms.types.Predator;
 import ru.javarush.island.ryabov.exception.GameException;
 
 @Getter
@@ -21,21 +19,11 @@ public class Task {
 
     public void doTask() {
         if (organism instanceof Animal animal) {
-            if (organism instanceof Predator predator) {
-                try {
-                    if (cell.HERBIVORES.size()>1000){
-                        predator.eat(cell);
-                    }
-                } catch (RuntimeException e){
-                    throw new GameException();
-                }
-            } else if (organism instanceof Herbivore herbivore) {
-                try {
-                    herbivore.eat(cell);
-                    herbivore.reproduce(cell);
-                } catch (RuntimeException | CloneNotSupportedException e) {
-                    throw new GameException();
-                }
+            try {
+                animal.eat(cell);
+                animal.reproduce(cell);
+            } catch (RuntimeException | CloneNotSupportedException e) {
+                throw new GameException();
             }
         } else {
             try {

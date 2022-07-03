@@ -14,14 +14,16 @@ public interface Eating {
         cell.getLock().lock();
         if (this instanceof Predator) {
             if (cell.HERBIVORES.size() != 0){
-                Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
-                synchronized (cell) {
-                    cell.HERBIVORES.remove(herbivore);
-                    cell.ORGANISMS.remove(herbivore);
-                }
-                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(herbivore.getClass().getSimpleName())) {
-                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() - 1);
+                if (cell.HERBIVORES.size()>1000) {
+                    Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
+                    synchronized (cell) {
+                        cell.HERBIVORES.remove(herbivore);
+                        cell.ORGANISMS.remove(herbivore);
+                    }
+                    for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
+                        if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(herbivore.getClass().getSimpleName())) {
+                            cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() - 1);
+                        }
                     }
                 }
             }

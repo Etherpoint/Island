@@ -38,12 +38,12 @@ public class OrganismWorker implements Runnable {
         } finally {
             cell.getLock().unlock();
         }
-        int time = 0;
+        int times = 0;
         for (Task task : tasks) {
-            if (time<5){
+            if (times<10){
                 task.doTask();
             }
-            time++;
+            times++;
         }
         tasks.clear();
     }

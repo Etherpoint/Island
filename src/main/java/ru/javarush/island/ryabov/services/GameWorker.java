@@ -30,6 +30,7 @@ public class GameWorker extends Thread {
     public void run() {
         View view = game.getView();
         view.showStatistics();
+        System.out.println("\n");
         view.allStats(gameMap);
 
         ScheduledExecutorService mainPool = Executors.newScheduledThreadPool(CORE_POOL_SIZE);

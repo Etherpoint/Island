@@ -1,6 +1,8 @@
 package ru.javarush.island.ryabov.view;
 
+import ru.javarush.island.ryabov.abstraction.TypeData;
 import ru.javarush.island.ryabov.config.Setting;
+import ru.javarush.island.ryabov.constants.Constants;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.map.GameMap;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
@@ -25,21 +27,21 @@ public class ConsoleView implements View {
 
     @Override
     public void showStatistics() {
-        Map<String, Double> rawStatistics = new HashMap<>();
-        Map<String, Long> statistics = new HashMap<>();
         Cell[][] cells = gameMap.getCells();
         for (Cell[] row : cells) {
             for (Cell cell : row) {
-                cell.ORGANISMS.forEach(organisms -> {
-                    String icon = organisms.getIcon();
-                    int count = organisms.calculateSize(cell);
-                    rawStatistics.put(icon, rawStatistics.getOrDefault(icon, 0D) + count);
-                });
+                Map<String, Long> cellStatistic = new HashMap<>();
+                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
+                    Organism organism = organismIntegerEntry.getKey();
+                    String icon = organism.getIcon();
+                    int count = organism.calculateSize(cell);
+                    cellStatistic.put(icon, cellStatistic.getOrDefault(icon, (long) count));
                 }
+                System.out.println(cellStatistic);
             }
-        rawStatistics.forEach((key, value) -> statistics.put(key, Math.round(value)));
-        System.out.println(statistics + "\n");
+        }
     }
+
     @Override
     public void allStats(GameMap gameMap) {
         Cell[][] cells = gameMap.getCells();
@@ -57,6 +59,9 @@ public class ConsoleView implements View {
             }
             row++;
         }
+        System.out.println("******************************************************************************************************************************************************************************************************************************");
+        System.out.println("******************************************************************************************************************************************************************************************************************************");
+        System.out.println("******************************************************************************************************************************************************************************************************************************");
     }
 
     public static String toList(Organism organism) {
