@@ -18,8 +18,7 @@ public class CellCreator implements Factory{
             if (organism.getClass().isAnnotationPresent(TypeData.class)) {
                 TypeData typeData = organism.getClass().getAnnotation(TypeData.class);
                 int count = Random.random(1, typeData.maxCountInCell());
-                cell.CELL_POPULATION.put(organism, count);
-
+                cell.CELL_POPULATION.add(organism);
                 for (int i = 1; i <= count; i++) {
                     Organism clone = organism.clone();
                     if (organism instanceof Herbivore){

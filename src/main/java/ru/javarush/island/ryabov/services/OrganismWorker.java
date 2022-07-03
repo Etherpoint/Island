@@ -1,10 +1,13 @@
 package ru.javarush.island.ryabov.services;
 
+import ru.javarush.island.ryabov.constants.Constants;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.map.GameMap;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
+
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class OrganismWorker implements Runnable {
     private final GameMap gameMap;
@@ -29,7 +32,10 @@ public class OrganismWorker implements Runnable {
             }
         }
     }
+
     private synchronized void processOneCell(Cell cell) {
+        Constants.DIED.set(0);
+        Constants.BORNED.set(0);
         cell.getLock().lock();
         try {
             for (Organism organism : cell.ORGANISMS) {
@@ -40,11 +46,8 @@ public class OrganismWorker implements Runnable {
         }
         int times = 0;
         for (Task task : tasks) {
-            if (times<10){
-                task.doTask();
-            }
-            times++;
+            task.doTask();
+            tasks.clear();
         }
-        tasks.clear();
     }
 }

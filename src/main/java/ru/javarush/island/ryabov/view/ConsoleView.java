@@ -1,11 +1,13 @@
 package ru.javarush.island.ryabov.view;
 
 import ru.javarush.island.ryabov.config.Setting;
+import ru.javarush.island.ryabov.constants.Constants;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.map.GameMap;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,8 +33,8 @@ public class ConsoleView implements View {
             int col = 1;
             for (Cell cell : rows) {
                 Map<String, Long> cellStatistic = new HashMap<>();
-                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    Organism organism = organismIntegerEntry.getKey();
+                for (Organism organismIntegerEntry : cell.CELL_POPULATION) {
+                    Organism organism = organismIntegerEntry;
                     String icon = organism.getIcon();
                     int count = organism.calculateSize(cell);
                     cellStatistic.put(icon, cellStatistic.getOrDefault(icon, (long) count));
@@ -42,6 +44,8 @@ public class ConsoleView implements View {
             }
             row++;
         }
+        System.out.println("DIED: "+ Constants.DIED.get());
+        System.out.println("BORNED: "+ Constants.BORNED.get());
         System.out.println("\n");
     }
 
@@ -54,9 +58,9 @@ public class ConsoleView implements View {
         for (Cell[] rows : cells) {
             int col = 0;
             for (Cell cols : rows) {
-                for (Map.Entry<Organism, Integer> organismIntegerEntry : cols.CELL_POPULATION.entrySet()) {
-                    text.append(toList(organismIntegerEntry.getKey())).append(": ").append(organismIntegerEntry.getValue()).append(" ");
-                }
+//                for (Organism organismIntegerEntry : cols.CELL_POPULATION) {
+//                    text.append(toList(organismIntegerEntry.getKey())).append(": ").append(organismIntegerEntry.getValue()).append(" ");
+//                }
                 System.out.println("Cell[" + row + "]" + "[" + col + "]---------" + text);
                 text.delete(0, text.length());
                 col++;

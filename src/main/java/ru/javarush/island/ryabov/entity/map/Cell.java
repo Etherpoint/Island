@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Cell {
 
-    public Map<Organism, Integer> CELL_POPULATION = new HashMap<>();
+    public List<Organism> CELL_POPULATION = new ArrayList<>();
 
     public List<Predator> PREDATORS = new ArrayList<>();
     public List<Herbivore> HERBIVORES = new ArrayList<>();

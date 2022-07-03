@@ -15,26 +15,26 @@ public interface Reproducible {
     default void reproduce(Cell cell) throws CloneNotSupportedException {
         cell.getLock().lock();
         Organism organism = Constants.ORGANISMS[Random.random(0,Constants.ORGANISMS.length)];
-        for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-            if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(organism.getClass().getSimpleName())) {
-                if(organismIntegerEntry.getKey() instanceof Plant){
+        for (Organism organismIntegerEntry : cell.CELL_POPULATION) {
+            if (organismIntegerEntry.getClass().getSimpleName().equals(organism.getClass().getSimpleName())) {
+                if(organismIntegerEntry instanceof Plant){
                     for (int i = 1; i <= 10; i++) {
-                        Plant plant = (Plant) organismIntegerEntry.getKey().clone();
+                        Plant plant = (Plant) organismIntegerEntry.clone();
                         cell.ORGANISMS.add(plant);
                         cell.PLANTS.add(plant);
-                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()+1);
+                        Constants.BORNED.incrementAndGet();
                     }
-                }else if (organismIntegerEntry.getValue() >=2){
-                    if (organismIntegerEntry.getKey() instanceof Predator){
-                        Predator predator = (Predator) organismIntegerEntry.getKey().clone();
+                }else if (organism.calculateSize(cell)>=2){
+                    if (organismIntegerEntry instanceof Predator){
+                        Predator predator = (Predator) organismIntegerEntry.clone();
                         cell.ORGANISMS.add(predator);
                         cell.PREDATORS.add(predator);
-                    }else if (organismIntegerEntry.getKey() instanceof Herbivore){
-                        Herbivore herbivore = (Herbivore) organismIntegerEntry.getKey().clone();
+                    }else if (organismIntegerEntry instanceof Herbivore){
+                        Herbivore herbivore = (Herbivore) organismIntegerEntry.clone();
                         cell.ORGANISMS.add(herbivore);
                         cell.HERBIVORES.add(herbivore);
+
                     }
-                    cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()+1);
                 }
             }
         }
