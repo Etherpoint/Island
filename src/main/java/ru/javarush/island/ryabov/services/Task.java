@@ -20,14 +20,19 @@ public class Task {
     public void doTask(){
         if (organism instanceof Animal animal) {
             try{
-                animal.reproduce(cell);
-                animal.eat(cell);
+                if (cell.ORGANISMS.size() > 1000){
+                    animal.eat(cell);
+                }else {
+                    animal.reproduce(cell);
+                }
             }catch (RuntimeException | CloneNotSupportedException e){
                 throw new GameException();
             }
         } else {
             try{
-                organism.reproduce(cell);
+                if (cell.ORGANISMS.size()<1000){
+                    organism.reproduce(cell);
+                }
             }catch (RuntimeException | CloneNotSupportedException e){
                 throw new GameException();
             }
