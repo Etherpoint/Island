@@ -48,7 +48,7 @@ public abstract class Organism implements Reproducible, Cloneable, Ageing {
     public int calculateSize(Cell cell) {
         int count = 0;
         for (Organism organism : cell.ORGANISMS) {
-            if (this.getClass().equals(organism.getClass())){
+            if (this.getClass().getSimpleName().equals(organism.getClass().getSimpleName())){
                 count++;
             }
         }

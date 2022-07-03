@@ -46,9 +46,10 @@ public class OrganismWorker implements Runnable {
         }
         int time = 10;
         for (Task task : tasks) {
-            if (time>0){
+            if (time > 0) {
                 task.doTask();
-            }time--;
+            }
+            time--;
         }
         tasks.clear();
     }

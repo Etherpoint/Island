@@ -9,9 +9,9 @@ import ru.javarush.island.ryabov.entity.organisms.types.Predator;
 
 public interface Ageing {
     default void aging(Cell cell){
-        if (this instanceof Organism organism){
+        if (this instanceof Organism){
             int age = ((Organism) this).getLIFE_TIMER().incrementAndGet();
-            if (age > 10){
+            if (age > 5){
                 this.die(cell);
             }
         }
