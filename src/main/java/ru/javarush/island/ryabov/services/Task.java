@@ -22,6 +22,7 @@ public class Task {
             try {
                 animal.eat(cell);
                 animal.reproduce(cell);
+                animal.aging(cell);
             } catch (RuntimeException | CloneNotSupportedException e) {
                 throw new GameException();
             }

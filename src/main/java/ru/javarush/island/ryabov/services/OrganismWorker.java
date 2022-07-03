@@ -7,7 +7,6 @@ import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class OrganismWorker implements Runnable {
     private final GameMap gameMap;
@@ -19,6 +18,9 @@ public class OrganismWorker implements Runnable {
 
     @Override
     public void run() {
+        Constants.EATEN.set(0);
+        Constants.BORNED.set(0);
+        Constants.DIED.set(0);
         Cell[][] cells = gameMap.getCells();
         for (Cell[] row : cells) {
             for (Cell cell : row) {
@@ -34,8 +36,6 @@ public class OrganismWorker implements Runnable {
     }
 
     private synchronized void processOneCell(Cell cell) {
-        Constants.DIED.set(0);
-        Constants.BORNED.set(0);
         cell.getLock().lock();
         try {
             for (Organism organism : cell.ORGANISMS) {
@@ -44,10 +44,12 @@ public class OrganismWorker implements Runnable {
         } finally {
             cell.getLock().unlock();
         }
-        int times = 0;
+        int time = 10;
         for (Task task : tasks) {
-            task.doTask();
-            tasks.clear();
+            if (time>0){
+                task.doTask();
+            }time--;
         }
+        tasks.clear();
     }
 }

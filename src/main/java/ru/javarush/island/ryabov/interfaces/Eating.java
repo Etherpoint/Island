@@ -4,11 +4,8 @@ import ru.javarush.island.ryabov.constants.Constants;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.organism.plant.Plant;
 import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
-import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 import ru.javarush.island.ryabov.entity.organisms.types.Predator;
 import ru.javarush.island.ryabov.util.Random;
-
-import java.util.Map;
 
 public interface Eating {
     default void eat(Cell cell) {
@@ -19,7 +16,7 @@ public interface Eating {
                 synchronized (cell) {
                     cell.HERBIVORES.remove(herbivore);
                     cell.ORGANISMS.remove(herbivore);
-                    Constants.DIED.incrementAndGet();
+                    Constants.EATEN.incrementAndGet();
                 }
             }
         } else {
@@ -28,7 +25,7 @@ public interface Eating {
                 synchronized (cell) {
                     cell.PLANTS.remove(plant);
                     cell.ORGANISMS.remove(plant);
-                    Constants.DIED.incrementAndGet();
+                    Constants.EATEN.incrementAndGet();
                 }
             }
         }

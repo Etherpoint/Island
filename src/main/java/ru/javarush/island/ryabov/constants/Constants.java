@@ -17,6 +17,7 @@ public class Constants {
 
     public static final ForkJoinPool POOLS = new ForkJoinPool();
 
-    public static AtomicInteger DIED = new AtomicInteger();
+    public static AtomicInteger EATEN = new AtomicInteger();
     public static AtomicInteger BORNED = new AtomicInteger();
+    public static AtomicInteger DIED = new AtomicInteger();
 }

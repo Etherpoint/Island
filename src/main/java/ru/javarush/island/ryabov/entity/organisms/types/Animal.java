@@ -5,7 +5,7 @@ import ru.javarush.island.ryabov.interfaces.Eating;
 import ru.javarush.island.ryabov.interfaces.Movable;
 import ru.javarush.island.ryabov.interfaces.Reproducible;
 
-public abstract class Animal extends Organism implements Movable, Reproducible, Eating {
+public abstract class Animal extends Organism implements Eating {
     public Animal(String name, String icon, Limit limit) {
         super(name, icon, limit);
     }
