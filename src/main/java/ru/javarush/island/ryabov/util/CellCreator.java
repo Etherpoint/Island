@@ -20,7 +20,7 @@ public class CellCreator implements Factory{
                 int count = Random.random(1, typeData.maxCountInCell());
                 cell.CELL_POPULATION.put(organism, count);
 
-                for (int i = 1; i < count; i++) {
+                for (int i = 1; i <= count; i++) {
                     Organism clone = organism.clone();
                     if (organism instanceof Herbivore){
                         cell.HERBIVORES.add((Herbivore) clone);
