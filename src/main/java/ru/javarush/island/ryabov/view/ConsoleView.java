@@ -28,9 +28,9 @@ public class ConsoleView implements View {
     @Override
     public void showStatistics() {
         Cell[][] cells = gameMap.getCells();
-        int row = 0;
+        int row = 1;
         for (Cell[] rows : cells) {
-            int col = 0;
+            int col = 1;
             for (Cell cell : rows) {
                 Map<String, Long> cellStatistic = new HashMap<>();
                 for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
