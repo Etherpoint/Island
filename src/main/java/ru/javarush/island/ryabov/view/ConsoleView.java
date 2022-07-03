@@ -28,8 +28,10 @@ public class ConsoleView implements View {
     @Override
     public void showStatistics() {
         Cell[][] cells = gameMap.getCells();
-        for (Cell[] row : cells) {
-            for (Cell cell : row) {
+        int row = 0;
+        for (Cell[] rows : cells) {
+            int col = 0;
+            for (Cell cell : rows) {
                 Map<String, Long> cellStatistic = new HashMap<>();
                 for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
                     Organism organism = organismIntegerEntry.getKey();
@@ -37,12 +39,16 @@ public class ConsoleView implements View {
                     int count = organism.calculateSize(cell);
                     cellStatistic.put(icon, cellStatistic.getOrDefault(icon, (long) count));
                 }
-                System.out.println(cellStatistic);
+                System.out.println("Cell[" + row + "]" + "[" + col + "]---------" +cellStatistic);
+                col++;
             }
+            row++;
         }
+        System.out.println("\n");
     }
 
     @Override
+    @SuppressWarnings("Unused")
     public void allStats(GameMap gameMap) {
         Cell[][] cells = gameMap.getCells();
         StringBuilder text = new StringBuilder();
@@ -59,9 +65,7 @@ public class ConsoleView implements View {
             }
             row++;
         }
-        System.out.println("******************************************************************************************************************************************************************************************************************************");
-        System.out.println("******************************************************************************************************************************************************************************************************************************");
-        System.out.println("******************************************************************************************************************************************************************************************************************************");
+        System.out.println("******************************************************************");
     }
 
     public static String toList(Organism organism) {

@@ -31,7 +31,6 @@ public class GameWorker extends Thread {
         View view = game.getView();
         view.showStatistics();
         System.out.println("\n");
-        view.allStats(gameMap);
 
         ScheduledExecutorService mainPool = Executors.newScheduledThreadPool(CORE_POOL_SIZE);
 
@@ -56,7 +55,6 @@ public class GameWorker extends Thread {
     private void awaitPool(View view, ExecutorService servicePool) {
         if (servicePool.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS)) {
             view.showStatistics();
-            view.allStats(gameMap);
         }
 
     }
