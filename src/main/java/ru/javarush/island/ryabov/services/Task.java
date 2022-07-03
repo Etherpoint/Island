@@ -3,7 +3,9 @@ package ru.javarush.island.ryabov.services;
 import lombok.Getter;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.types.Animal;
+import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
+import ru.javarush.island.ryabov.entity.organisms.types.Predator;
 import ru.javarush.island.ryabov.exception.GameException;
 
 @Getter
@@ -17,23 +19,28 @@ public class Task {
         this.cell = cell;
     }
 
-    public void doTask(){
+    public void doTask() {
         if (organism instanceof Animal animal) {
-            try{
-                if (cell.ORGANISMS.size() > 1000){
-                    animal.eat(cell);
-                }else {
-                    animal.reproduce(cell);
+            if (organism instanceof Predator predator) {
+                try {
+                    if (cell.HERBIVORES.size()>1000){
+                        predator.eat(cell);
+                    }
+                } catch (RuntimeException e){
+                    throw new GameException();
                 }
-            }catch (RuntimeException | CloneNotSupportedException e){
-                throw new GameException();
+            } else if (organism instanceof Herbivore herbivore) {
+                try {
+                    herbivore.eat(cell);
+                    herbivore.reproduce(cell);
+                } catch (RuntimeException | CloneNotSupportedException e) {
+                    throw new GameException();
+                }
             }
         } else {
-            try{
-                if (cell.ORGANISMS.size()<1000){
-                    organism.reproduce(cell);
-                }
-            }catch (RuntimeException | CloneNotSupportedException e){
+            try {
+                organism.reproduce(cell);
+            } catch (RuntimeException | CloneNotSupportedException e) {
                 throw new GameException();
             }
         }

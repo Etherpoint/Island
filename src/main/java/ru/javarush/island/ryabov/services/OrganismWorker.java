@@ -38,7 +38,13 @@ public class OrganismWorker implements Runnable {
         } finally {
             cell.getLock().unlock();
         }
-        tasks.forEach(Task::doTask);
+        int time = 0;
+        for (Task task : tasks) {
+            if (time<5){
+                task.doTask();
+            }
+            time++;
+        }
         tasks.clear();
     }
 }

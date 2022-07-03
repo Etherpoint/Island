@@ -17,7 +17,12 @@ public interface Reproducible {
         Organism organism = Constants.ORGANISMS[Random.random(0,Constants.ORGANISMS.length)];
         for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
             if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(organism.getClass().getSimpleName())) {
-                if (organismIntegerEntry.getValue() >=2){
+                if(organismIntegerEntry.getKey() instanceof Plant){
+                    Plant plant = (Plant) organismIntegerEntry.getKey().clone();
+                    cell.ORGANISMS.add(plant);
+                    cell.PLANTS.add(plant);
+                    cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()+1);
+                }else if (organismIntegerEntry.getValue() >=2){
                     if (organismIntegerEntry.getKey() instanceof Predator){
                         Predator predator = (Predator) organismIntegerEntry.getKey().clone();
                         cell.ORGANISMS.add(predator);
@@ -26,10 +31,6 @@ public interface Reproducible {
                         Herbivore herbivore = (Herbivore) organismIntegerEntry.getKey().clone();
                         cell.ORGANISMS.add(herbivore);
                         cell.HERBIVORES.add(herbivore);
-                    }else if (organismIntegerEntry.getKey() instanceof Plant){
-                        Plant plant = (Plant) organismIntegerEntry.getKey().clone();
-                        cell.ORGANISMS.add(plant);
-                        cell.PLANTS.add(plant);
                     }
                     cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()+1);
                 }
