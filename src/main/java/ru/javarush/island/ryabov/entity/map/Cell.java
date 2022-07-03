@@ -20,7 +20,6 @@ public class Cell {
 
     @Getter
     private final Lock lock = new ReentrantLock(true);
-
     private final List<Cell> nextCell = new ArrayList<>();
 
     public void updateNextCell(GameMap map, int row, int col) {

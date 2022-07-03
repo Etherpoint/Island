@@ -11,12 +11,12 @@ import java.util.Map;
 
 //TODO добавить проверку по определенным спискам
 public interface Reproducible {
+    @SuppressWarnings("unused")
     default void reproduce(Cell cell) throws CloneNotSupportedException {
         cell.getLock().lock();
         if (this instanceof Predator) {
             if (cell.PREDATORS.size() > 1) {
                 Predator predator = cell.PREDATORS.get(Random.random(0, cell.PREDATORS.size()));
-                //TODO добавить вероятности
                 synchronized (cell) {
                     cell.PREDATORS.add((Predator) predator.clone());
                     cell.ORGANISMS.add(predator.clone());
@@ -30,7 +30,6 @@ public interface Reproducible {
         } else if (this instanceof Plant) {
             if (cell.PLANTS.size() > 1) {
                 Plant plant = cell.PLANTS.get(Random.random(0, cell.PLANTS.size()));
-                //TODO добавить вероятности
                 synchronized (cell) {
                     cell.PLANTS.add((Plant) plant.clone());
                     cell.ORGANISMS.add(plant.clone());
@@ -44,7 +43,6 @@ public interface Reproducible {
         } else if (this instanceof Herbivore) {
             if (cell.HERBIVORES.size() > 1) {
                 Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
-                //TODO добавить вероятности
                 synchronized (cell) {
                     cell.HERBIVORES.add((Herbivore) herbivore.clone());
                     cell.ORGANISMS.add(herbivore.clone());

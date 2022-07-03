@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 public class ConsoleView implements View {
 
     private final GameMap gameMap;
+    @SuppressWarnings("unused")
     private final int cellWidth = Setting.get().getConsoleCellWith();
 
     public ConsoleView(GameMap gameMap) {
@@ -38,7 +39,6 @@ public class ConsoleView implements View {
             }
         rawStatistics.forEach((key, value) -> statistics.put(key, Math.round(value)));
         System.out.println(statistics + "\n");
-        statistics.toString();
     }
     @Override
     public void allStats(GameMap gameMap) {

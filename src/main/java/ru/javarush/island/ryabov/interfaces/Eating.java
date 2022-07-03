@@ -15,7 +15,6 @@ public interface Eating {
         if (this instanceof Predator) {
             if (cell.HERBIVORES.size() != 0){
                 Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
-                //TODO добавить вероятности
                 synchronized (cell) {
                     cell.HERBIVORES.remove(herbivore);
                     cell.ORGANISMS.remove(herbivore);
@@ -29,7 +28,6 @@ public interface Eating {
         } else {
             if (cell.PLANTS.size() != 0){
                 Plant plant = cell.PLANTS.get(Random.random(0, cell.PLANTS.size()));
-                //TODO добавить вероятности
                 synchronized (cell) {
                     cell.PLANTS.remove(plant);
                     cell.ORGANISMS.remove(plant);

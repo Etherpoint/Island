@@ -4,10 +4,8 @@ import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.map.GameMap;
 
 public class GameMapCreator {
-    private final Factory entityFactory;
 
-    public GameMapCreator(Factory entityFactory) {
-        this.entityFactory = entityFactory;
+    public GameMapCreator() {
     }
     public GameMap createMap(int rows, int cols) throws CloneNotSupportedException {
         GameMap gameMap = new GameMap(rows, cols);

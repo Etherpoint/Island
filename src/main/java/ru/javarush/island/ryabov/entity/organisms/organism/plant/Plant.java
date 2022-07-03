@@ -7,6 +7,6 @@ import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 
 public class Plant extends Organism {
     public Plant(String name, String icon, Limit limit) {
-        super(name, icon, limit);
+        super(icon, limit);
     }
 }

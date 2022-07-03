@@ -13,7 +13,7 @@ import ru.javarush.island.ryabov.view.View;
 public class Runner {
     public static void main(String[] args) throws CloneNotSupportedException {
         Factory cellCreator = new CellCreator();
-        GameMapCreator gameMapCreator = new GameMapCreator(cellCreator);
+        GameMapCreator gameMapCreator = new GameMapCreator();
         int row = Constants.ROWS;
         int col = Constants.COLS;
         GameMap gameMap = gameMapCreator.createMap(row, col);

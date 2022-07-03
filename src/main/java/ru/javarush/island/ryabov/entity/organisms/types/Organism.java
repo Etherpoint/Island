@@ -11,15 +11,15 @@ import java.util.concurrent.atomic.AtomicLong;
 public abstract class Organism implements Reproducible, Cloneable {
 
     private final static AtomicLong idCounter = new AtomicLong(System.currentTimeMillis());
+    @SuppressWarnings("unused")
     private long id = idCounter.incrementAndGet();
-    private final String NAME;
     private final String ICON;
     private final Limit LIMIT;
     @Setter
+    @SuppressWarnings("unused")
     private double WEIGHT;
 
-    public Organism(String name, String icon, Limit limit) {
-        this.NAME = name;
+    public Organism(String icon, Limit limit) {
         this.ICON = icon;
         this.LIMIT = limit;
         WEIGHT = Random.random(LIMIT.getMaxWeight() / 2, LIMIT.getMaxWeight());

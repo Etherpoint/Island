@@ -8,13 +8,10 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class OrganismWorker implements Runnable {
-
-    private final Organism prototype;
     private final GameMap gameMap;
     private final Queue<Task> tasks = new LinkedBlockingQueue<>();
 
-    public OrganismWorker(Organism prototype, GameMap gameMap) {
-        this.prototype = prototype;
+    public OrganismWorker(GameMap gameMap) {
         this.gameMap = gameMap;
     }
 

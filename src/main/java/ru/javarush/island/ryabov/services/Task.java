@@ -4,7 +4,6 @@ import lombok.Getter;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.types.Animal;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
-import ru.javarush.island.ryabov.exception.GameException;
 
 @Getter
 public class Task {

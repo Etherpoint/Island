@@ -38,7 +38,7 @@ public class GameWorker extends Thread {
                 .getEntityFactory()
                 .getAllPrototypes()
                 .stream()
-                .map(o -> new OrganismWorker(o, game.getGameMap()))
+                .map(o -> new OrganismWorker(game.getGameMap()))
                 .toList();
         mainPool.scheduleWithFixedDelay(() -> runWorkers(view, workers)
                 , PERIOD, PERIOD, TimeUnit.MILLISECONDS);
