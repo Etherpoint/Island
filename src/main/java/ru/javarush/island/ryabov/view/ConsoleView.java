@@ -49,7 +49,7 @@ public class ConsoleView implements View {
             int col = 0;
             for (Cell cols : rows) {
                 for (Map.Entry<Organism, Integer> organismIntegerEntry : cols.CELL_POPULATION.entrySet()) {
-                    text.append(toList(organismIntegerEntry.getKey())).append(": ").append(organismIntegerEntry.getValue()).append(" ");
+                    text.append(toList(organismIntegerEntry.getKey())).append(": ").append((organismIntegerEntry.getValue()-1)).append(" ");
                 }
                 System.out.println("Cell[" + row + "]" + "[" + col + "]---------" + text);
                 text.delete(0, text.length());

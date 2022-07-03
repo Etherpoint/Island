@@ -17,7 +17,7 @@ public class CellCreator implements Factory{
         for (Organism organism : Constants.ORGANISMS) {
             if (organism.getClass().isAnnotationPresent(TypeData.class)) {
                 TypeData typeData = organism.getClass().getAnnotation(TypeData.class);
-                int count = Random.random(0, typeData.maxCountInCell());
+                int count = Random.random(1, typeData.maxCountInCell());
                 cell.CELL_POPULATION.put(organism, count);
 
                 for (int i = 1; i < count; i++) {
