@@ -1,5 +1,6 @@
 package ru.javarush.island.ryabov.interfaces;
 
+import ru.javarush.island.ryabov.constants.Constants;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.organism.plant.Plant;
 import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
@@ -9,48 +10,28 @@ import ru.javarush.island.ryabov.util.Random;
 
 import java.util.Map;
 
-//TODO добавить проверку по определенным спискам
 public interface Reproducible {
     @SuppressWarnings("unused")
     default void reproduce(Cell cell) throws CloneNotSupportedException {
         cell.getLock().lock();
-        if (this instanceof Predator) {
-            if (cell.PREDATORS.size() > 1) {
-                Predator predator = cell.PREDATORS.get(Random.random(0, cell.PREDATORS.size()));
-                synchronized (cell) {
-                    cell.PREDATORS.add((Predator) predator.clone());
-                    cell.ORGANISMS.add(predator.clone());
-                }
-                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(predator.getClass().getSimpleName())) {
-                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() + 1);
+        Organism organism = Constants.ORGANISMS[Random.random(0,Constants.ORGANISMS.length)];
+        for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
+            if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(organism.getClass().getSimpleName())) {
+                if (organismIntegerEntry.getValue() >=2){
+                    if (organismIntegerEntry.getKey() instanceof Predator){
+                        Predator predator = (Predator) organismIntegerEntry.getKey().clone();
+                        cell.ORGANISMS.add(predator);
+                        cell.PREDATORS.add(predator);
+                    }else if (organismIntegerEntry.getKey() instanceof Herbivore){
+                        Herbivore herbivore = (Herbivore) organismIntegerEntry.getKey().clone();
+                        cell.ORGANISMS.add(herbivore);
+                        cell.HERBIVORES.add(herbivore);
+                    }else if (organismIntegerEntry.getKey() instanceof Plant){
+                        Plant plant = (Plant) organismIntegerEntry.getKey().clone();
+                        cell.ORGANISMS.add(plant);
+                        cell.PLANTS.add(plant);
                     }
-                }
-            }
-        } else if (this instanceof Plant) {
-            if (cell.PLANTS.size() > 1) {
-                Plant plant = cell.PLANTS.get(Random.random(0, cell.PLANTS.size()));
-                synchronized (cell) {
-                    cell.PLANTS.add((Plant) plant.clone());
-                    cell.ORGANISMS.add(plant.clone());
-                }
-                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(plant.getClass().getSimpleName())) {
-                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() + 1);
-                    }
-                }
-            }
-        } else if (this instanceof Herbivore) {
-            if (cell.HERBIVORES.size() > 1) {
-                Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
-                synchronized (cell) {
-                    cell.HERBIVORES.add((Herbivore) herbivore.clone());
-                    cell.ORGANISMS.add(herbivore.clone());
-                }
-                for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(herbivore.getClass().getSimpleName())) {
-                        cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() + 1);
-                    }
+                    cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue()+1);
                 }
             }
         }
