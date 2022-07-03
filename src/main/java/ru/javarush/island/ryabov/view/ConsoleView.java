@@ -16,7 +16,6 @@ public class ConsoleView implements View {
 
     private final GameMap gameMap;
     private final int cellWidth = Setting.get().getConsoleCellWith();
-    private final String border = "═".repeat(cellWidth);
 
     public ConsoleView(GameMap gameMap) {
         this.gameMap = gameMap;
@@ -24,13 +23,13 @@ public class ConsoleView implements View {
 
 
     @Override
-    public String showStatistics() {
+    public void showStatistics() {
         Map<String, Double> rawStatistics = new HashMap<>();
         Map<String, Long> statistics = new HashMap<>();
         Cell[][] cells = gameMap.getCells();
         for (Cell[] row : cells) {
             for (Cell cell : row) {
-                cell.ORGANISMS.stream().forEach(organisms -> {
+                cell.ORGANISMS.forEach(organisms -> {
                     String icon = organisms.getIcon();
                     int count = organisms.calculateSize(cell);
                     rawStatistics.put(icon, rawStatistics.getOrDefault(icon, 0D) + count);
@@ -39,7 +38,7 @@ public class ConsoleView implements View {
             }
         rawStatistics.forEach((key, value) -> statistics.put(key, Math.round(value)));
         System.out.println(statistics + "\n");
-        return statistics.toString();
+        statistics.toString();
     }
     @Override
     public void allStats(GameMap gameMap) {
@@ -50,7 +49,7 @@ public class ConsoleView implements View {
             int col = 0;
             for (Cell cols : rows) {
                 for (Map.Entry<Organism, Integer> organismIntegerEntry : cols.CELL_POPULATION.entrySet()) {
-                    text.append(toList(organismIntegerEntry.getKey()) + ": " + organismIntegerEntry.getValue() + " ");
+                    text.append(toList(organismIntegerEntry.getKey())).append(": ").append(organismIntegerEntry.getValue()).append(" ");
                 }
                 System.out.println("Cell[" + row + "]" + "[" + col + "]---------" + text);
                 text.delete(0, text.length());

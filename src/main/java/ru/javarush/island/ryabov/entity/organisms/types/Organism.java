@@ -25,11 +25,6 @@ public abstract class Organism implements Reproducible, Cloneable {
         WEIGHT = Random.random(LIMIT.getMaxWeight() / 2, LIMIT.getMaxWeight());
     }
 
-    public String getType() {
-        return type;
-    }
-    private final String type = this.getClass().getSimpleName();
-
     @Override
     public Organism clone() throws CloneNotSupportedException {
         Organism clone = (Organism) super.clone();
@@ -38,16 +33,6 @@ public abstract class Organism implements Reproducible, Cloneable {
         return clone;
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends Organism> T clone(T original) {
-        //for clients (cast to original Type)
-        try {
-            return (T) original.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e);
-        }
-
-    }
     public String getIcon() {
         return ICON;
     }

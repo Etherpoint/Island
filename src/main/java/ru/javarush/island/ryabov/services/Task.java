@@ -4,6 +4,7 @@ import lombok.Getter;
 import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.organisms.types.Animal;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
+import ru.javarush.island.ryabov.exception.GameException;
 
 @Getter
 public class Task {
@@ -16,11 +17,25 @@ public class Task {
         this.cell = cell;
     }
 
-    public void doTask() {
+//    public void doTask(){
+//        if (organism instanceof Animal animal) {
+//            try{
+//                animal.eat(cell);
+//                animal.reproduce(cell);
+//            }catch (RuntimeException | CloneNotSupportedException e){
+//                throw new GameException();
+//            }
+//        } else {
+//            try{
+//                organism.reproduce(cell);
+//            }catch (RuntimeException | CloneNotSupportedException e){
+//                throw new GameException();
+//            }
+//        }
+//    }
+    public void doTask(){
         if (organism instanceof Animal animal) {
             animal.eat(cell);
-        } else {
-            organism.reproduce(cell);
         }
     }
 

@@ -4,9 +4,7 @@ import ru.javarush.island.ryabov.entity.map.Cell;
 import ru.javarush.island.ryabov.entity.map.GameMap;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 
-import java.util.Iterator;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class OrganismWorker implements Runnable {

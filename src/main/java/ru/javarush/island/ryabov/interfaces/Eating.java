@@ -13,8 +13,7 @@ public interface Eating {
     default void eat(Cell cell) {
         cell.getLock().lock();
         if (this instanceof Predator) {
-            if (cell.HERBIVORES.size() == 0) {
-            } else {
+            if (cell.HERBIVORES.size() != 0){
                 Herbivore herbivore = cell.HERBIVORES.get(Random.random(0, cell.HERBIVORES.size()));
                 //TODO добавить вероятности
                 synchronized (cell) {
@@ -22,14 +21,13 @@ public interface Eating {
                     cell.ORGANISMS.remove(herbivore);
                 }
                 for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    if (organismIntegerEntry.getKey().getClass().getSimpleName() == herbivore.getClass().getSimpleName()) {
+                    if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(herbivore.getClass().getSimpleName())) {
                         cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() - 1);
                     }
                 }
             }
         } else {
-            if (cell.PLANTS.size() == 0) {
-            } else {
+            if (cell.PLANTS.size() != 0){
                 Plant plant = cell.PLANTS.get(Random.random(0, cell.PLANTS.size()));
                 //TODO добавить вероятности
                 synchronized (cell) {
@@ -37,7 +35,7 @@ public interface Eating {
                     cell.ORGANISMS.remove(plant);
                 }
                 for (Map.Entry<Organism, Integer> organismIntegerEntry : cell.CELL_POPULATION.entrySet()) {
-                    if (organismIntegerEntry.getKey().getClass().getSimpleName() == plant.getClass().getSimpleName()) {
+                    if (organismIntegerEntry.getKey().getClass().getSimpleName().equals(plant.getClass().getSimpleName())) {
                         cell.CELL_POPULATION.put(organismIntegerEntry.getKey(), organismIntegerEntry.getValue() - 1);
                     }
                 }

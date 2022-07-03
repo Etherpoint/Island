@@ -5,8 +5,6 @@ import ru.javarush.island.ryabov.entity.organisms.organism.plant.Plant;
 import ru.javarush.island.ryabov.entity.organisms.types.Herbivore;
 import ru.javarush.island.ryabov.entity.organisms.types.Organism;
 import ru.javarush.island.ryabov.entity.organisms.types.Predator;
-
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

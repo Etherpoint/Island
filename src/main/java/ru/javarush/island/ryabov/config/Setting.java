@@ -3,7 +3,6 @@ package ru.javarush.island.ryabov.config;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.SneakyThrows;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -44,10 +43,6 @@ public class Setting {
     @Getter(AccessLevel.PROTECTED)
     private Map<String, Map<String, Integer>> foodMap = new LinkedHashMap<>();
 
-    public Map<String, Integer> getFoodMap(String keyName) {
-        this.foodMap.putIfAbsent(keyName, new LinkedHashMap<>());
-        return foodMap.get(keyName);
-    }
     //=============================== /DATA ========================================
 
     //================================ INIT ========================================

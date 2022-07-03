@@ -15,9 +15,4 @@ public class Buffalo extends Herbivore {
     public void move(Cell cell) {
 
     }
-
-    @Override
-    public void reproduce(Cell cell) {
-
-    }
 }

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 
 public class Constants {
-    public static final int ROWS = 1;
-    public static final int COLS = 2;
+    public static final int ROWS = 10;
+    public static final int COLS = 10;
 
     public static final List<Class<?>> TYPES = ClassFinder.find("ru.javarush.island.ryabov.entity.organisms.organism");
     public static final Organism[] ORGANISMS = EntityScanner.createPrototypes(TYPES);

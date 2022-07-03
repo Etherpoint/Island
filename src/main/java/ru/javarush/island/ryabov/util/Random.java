@@ -13,7 +13,7 @@ public class Random {
     public static double random(double min, double max) {
         return ThreadLocalRandom.current().nextDouble(min, max);
     }
-
+    @SuppressWarnings("unused")
     public static boolean get(int percentProbably) {
         return random(0, 100) < percentProbably;
     }

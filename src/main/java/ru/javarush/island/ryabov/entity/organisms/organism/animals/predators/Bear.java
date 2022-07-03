@@ -16,9 +16,4 @@ public class Bear extends Predator {
     public void move(Cell cell) {
 
     }
-
-    @Override
-    public void reproduce(Cell cell) {
-
-    }
 }
