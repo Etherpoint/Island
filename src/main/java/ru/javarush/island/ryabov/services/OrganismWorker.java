@@ -28,8 +28,6 @@ public class OrganismWorker implements Runnable {
                     processOneCell(cell);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.err.println("OMG. Debug it!");
-                    System.exit(0);
                 }
             }
         }

@@ -11,8 +11,6 @@ import java.util.Objects;
 @Getter
 @Setter(AccessLevel.PROTECTED)
 public class Setting {
-
-    //======================== SAFE_THREAD_SINGLETON =============================
     private static volatile Setting SETTING;
 
     public static Setting get() {
@@ -26,10 +24,6 @@ public class Setting {
         }
         return setting;
     }
-    //======================== /SAFE_THREAD_SINGLETON =============================
-
-
-    //=============================== DATA ========================================
 
     private int period;
     private int rows;
@@ -42,10 +36,6 @@ public class Setting {
     private int percentPlantGrow;
     @Getter(AccessLevel.PROTECTED)
     private Map<String, Map<String, Integer>> foodMap = new LinkedHashMap<>();
-
-    //=============================== /DATA ========================================
-
-    //================================ INIT ========================================
 
     private Setting() {
         loadFromDefault();
