@@ -10,9 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Constants {
     public static final int ROWS = 10;
-    public static final int COLS = 10;
-    public static final int SHOWROWS = 2;
-    public static final int SHOWCOLS = 2;
+    public static final int COLS = 50;
+    public static final int SHOWROWS = 10;
+    public static final int SHOWCOLS = 50;
 
     public static final List<Class<?>> TYPES = ClassFinder
             .find("ru.javarush.island.ryabov.entity.organisms.organism");
